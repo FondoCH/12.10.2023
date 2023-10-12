@@ -1,0 +1,27 @@
+{% extends 'master.html' %}
+{% block pagetitle %}<h2>PERFORMANCE ANALYSIS TOOL</h2>{% endblock %}
+{% block content %}
+    <h3>Adding School</h3>
+    <hr/>
+    {% print "School details" %}
+    <p></p>
+    <form action="{{ request.path}}" method = "post">
+        <label for="name">Name</label><br>
+        <input type="text" name = "name" placeholder="name" value="{{school.name}}"/><br>
+        
+        <br>
+        <br>
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}
+
+{% block pagefooter %}
+<p><b>Date/Time: <span id="datetime"></span></b></p>
+
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
+
+{% endblock %}
+

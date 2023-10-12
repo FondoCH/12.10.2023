@@ -1,0 +1,35 @@
+{% extends 'master.html' %}
+{% block pagetitle %}<h2>PERFORMANCE ANALYSIS TOOL</h2>{% endblock %}
+{% block content %}
+    <h4>List of Schools</h4>
+    <h4><i>(<a href = "{{ url_for('new_school') }}">Add New School</a>)</i></h4>
+    
+    <table>
+        <thead>
+           <tr>
+              <th>Name</th>
+              <th>Edit</th>
+           </tr>
+        </thead>
+        
+        <tbody>
+           {% for school in schools %}
+              <tr>
+                 <td>{{ school.name }}</td>
+                 <td><a href="/schools/edit/{{ school.id }}">edit</a></td>
+              </tr>
+           {% endfor %}
+        </tbody>
+     </table>
+{% endblock %}
+
+{% block pagefooter %}
+<p><b>Date/Time: <span id="datetime"></span></b></p>
+
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
+
+{% endblock %}
+

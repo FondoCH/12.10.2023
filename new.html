@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+{% block pagetitle %}<h2>PERFORMANCE ANALYSIS TOOL</h2>{% endblock %}
+{% block content %}
+    <h3>Adding Students</h3>
+    
+    <hr/>
+    Student Details;
+    <p></p>
+    <form action="{{ request.path}}" method = "post">
+        <label for="name">Name</label><br>
+        <input type="text" name="name" placeholder="name" value="{{student.name}}"/><br>
+        <label for="maths">Maths</label><br>
+        <input type="text" name="maths" placeholder="maths" value="{{student.maths}}"/><br>
+        <label for="sci">Sci</label><br>
+        <input type="text" name="sci" placeholder="sci" value="{{student.sci}}"/><br>
+        <label for="school">School</label><br>
+        <select name="school" placeholder="school" value="{{student.school}}"/><br>
+            <option value=""></option>
+            {% for value in schools %}
+                <option value="{{ value['name'] }}" {{ 'selected' if student.school == value['name'] else '' }}>{{ value['name'] }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="remarks">Remarks</label><br>
+        <select name="remarks" placeholder="remarks" value="{{student.remarks}}"/><br>
+            <option value=""></option>
+            <option value="Pass, Excellent">pass, excellent</option>
+            <option value="Pass, Good">pass, good</option>
+            <option value="Fail, Improve">fail, improve</option>
+        </select><br>
+        <label for="age">Age</label><br>
+        <input type="text" name = "age" placeholder="age" value="{{student.age}}"/><br>
+        <label for="gender">Gender</label><br>
+        <select name="gender" placeholder="gender" value="{{student.gender}}"/><br>
+            <option value=""></option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br>
+        
+        
+
+        <br>
+        <br>
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}
+
+{% block pagefooter %}
+<p><b>Date/Time: <span id="datetime"></span></b></p>
+
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
+
+{% endblock %}
