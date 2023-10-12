@@ -1,0 +1,76 @@
+{% extends 'master.html' %}
+{% block pagetitle %}<h2>PERFORMANCE ANALYSIS TOOL</h2>{% endblock %}
+{% block content %}
+    <p><h4>Students & Their marks</h4></p>
+    <p><h4><i>(<a href = "{{ url_for('new') }}">Add Student</a>)</i></h4></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>School</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td><a href="/view/{{ student.id }}" style="text-decoration:none;">{{ student.name }}</a></td>
+                    <td>{{ student.school }}</td>
+                    <td><a href="/edit/{{ student.id }}"><i class="fa-solid fa-pen-clip"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block content1 %}
+    <p class="individualstu"><h4>Individual Student details</h4></p>
+
+    Name of student : <b>{{ student.name }}</b> <br>
+    <p>&nbsp;</p>
+    Gender of student : <b>{{ student.gender }}</b> <br>
+    <p>&nbsp;</p>
+    Age of student : <b>{{ student.age }}</b> <br>
+    
+{% endblock %}
+
+{% block content2 %}
+    <h4><i>Additional details for students</i></h4>
+    <p></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Maths</th>
+                <th>Sci</th>
+                <th>Total</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                    <td>{{ student.maths }}</td>
+                    <td>{{ student.sci }}</td>
+                    <td>{{ student.total() }}</td>
+                    <td>{{ student.remarks }}</td>
+                </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block pagefooter %}
+
+<marquee>
+<p><b>Date/Time: <span id="datetime"></span></b></p>
+</marquee>
+
+<script>
+    var dt = new Date();
+    document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
+
+{% endblock %}
+
